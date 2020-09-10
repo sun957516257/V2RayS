@@ -38,7 +38,8 @@ namespace V2RayS
             {
                 //MessageBox.Show("litsenner is'nt  null");
                 //return;
-            }            
+            }
+            
             listener.Prefixes.Add("http://" + lisenip + "/");
             Console.WriteLine("当前PAC文件：" + pacfile);
             try
@@ -59,7 +60,8 @@ namespace V2RayS
             if (listener != null)
             {
                 listenThread.Abort();
-                listener.Stop();               
+                listener.Stop();
+               
             }
         }
         void AcceptClient()
@@ -97,7 +99,7 @@ namespace V2RayS
                 FileStream stream = File.OpenRead(pacfile);
                 response.StatusCode = 200;
                 response.ContentLength64 = stream.Length;
-                response.ContentType = "application/x-ns-proxy-autoconfig";//这里是IE能否识别的关键,不加这一句IE不识别为PAC，但是chrome可以
+                response.ContentType = "application/x-ns-proxy-autoconfig";//这里是IE能否识别的关键
                 int byteLength = (int)stream.Length;
                 byte[] fileBytes = new byte[byteLength];
                 stream.Read(fileBytes, 0, byteLength);
@@ -109,7 +111,7 @@ namespace V2RayS
             }
             catch
             {
-                MessageBox.Show("PacHTTPServer：传输PAC规则出现异常，请检查PAC文件");
+                MessageBox.Show("PacHTTPServer:传输PAC文件出现异常");
             }
         }
     }
